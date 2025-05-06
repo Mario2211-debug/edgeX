@@ -2,7 +2,7 @@
 
 Este projeto tem como finalidade configurar um dispositivo MQTT no EdgeX Foundry para enviar dados simulados de um sensor usando um publisher em Node.js. O projeto utiliza o serviço `device-mqtt` para processar mensagens MQTT e gerar eventos que podem ser consultados via API. O dispositivo simulado, chamado `MQTT-test-device`, envia valores aleatórios para o recurso `randfloat64`, definido no perfil `Test-Device-MQTT-Profile`.
 
-## Tarefas
+## Objetivo
 Configurar o EdgeX Foundry com um dispositivo MQTT que envia valores aleatórios via MQTT.
 
 ## Pré-requisitos
@@ -105,8 +105,11 @@ O ficheiro `configuration.yaml` é montado via volume (`./mqtt/configuration.yam
 ## Solução de Problemas
 
 - **Erro: "source name `randfloat64` not found as Device Command or Device Resource"**:
+
   - **Causa**: Mismatch no nome do dispositivo (ex.: `MQTT-Test-Device` vs. `MQTT-test-device`).
+
   - **Solução**: Verifique o nome do dispositivo com:
+
     ```bash
     curl -X GET http://localhost:59881/api/v3/device/name/MQTT-test-device
     ```
@@ -117,13 +120,16 @@ O ficheiro `configuration.yaml` é montado via volume (`./mqtt/configuration.yam
     docker restart edgex-device-mqtt
     ```
 - **Erro: Dados MQTT não processados**:
+
   - **Causa**: Tópico incorreto.
+
   - **Solução**: Verifique o `configuration.yaml` do `device-mqtt`:
+
     ```bash
     docker exec -it edgex-device-mqtt cat /etc/device-mqtt/configuration.toml
     ```
     Certifique-se de que `Incoming.Topic = "incoming/data/#"`.
 
-## Conclusão
+### Conclusão
 Este tutorial configurou um dispositivo MQTT no EdgeX Foundry que envia valores aleatórios para o recurso `randfloat64`. Os eventos gerados podem ser consultados via API, e o setup é escalável para outros recursos ou dispositivos. Para mais detalhes, consulte a [documentação do EdgeX Foundry](https://docs.edgexfoundry.org/).
 ```
