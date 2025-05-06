@@ -1,0 +1,83 @@
+MaxEventSize: 0
+
+Writable:
+  LogLevel: "INFO"
+  # InsecureSecrets:
+  #   MQTT:
+  #     SecretName: "credentials"
+  #     SecretData:
+  #       username: "admin"
+  #       password: "public"
+
+Service:
+  Host: "localhost"
+  Port: 59982
+  StartupMsg: "device mqtt started"
+  RequestTimeout: "5s"
+  LogLevel: "INFO"
+
+Registry:
+  Host: edgex-core-keeper
+  Port: 59890
+  Type: "keeper"
+
+Clients:
+  core-metadata:
+    Protocol: http
+    Host: "edgex-core-metadata"
+    Port: 59881
+  
+  core-data:
+    Protocol: http
+    Host: "edgex-core-data"
+    Port: 59880
+
+  core-command:
+    Protocol: http
+    Host: "edgex-core-command"
+    Port: 59882
+
+MessageBus:
+  ClientId: "device-mqtt"
+  Protocol: "tcp"
+  Port: 1883
+  Host: "emq"
+  AuthMode: "none"
+  Type: "mqtt"
+  Optional:
+    Qos: "0"
+    KeepAlive: "10"
+    Retained: "false"
+    AutoReconnect: "true"
+    ConnectTimeout: "5"
+    SkipCertVerify: "false"
+    Format: "nats"
+    RetryOnFailedConnect: "true"
+    QueueGroup: ""
+    Durable: ""
+    AutoProvision: "true"
+    Deliver: "new"
+    DefaultPubRetryAttempts: "2"
+    Subject: "edgex/#"
+
+Device:
+  ProfilesDir: "./res/profiles/"
+  DevicesDir: "./res/devices/"
+
+MQTTBrokerInfo:
+  Schema: "tcp"
+  Host: "emq"
+  Port: 1883
+  Qos: 0
+  KeepAlive: 3600
+  ClientId: "device-mqtt"
+  CredentialsRetryTime: 120
+  CredentialsRetryWait: 1
+  ConnEstablishingRetry: 10
+  ConnRetryWaitTime: 5
+  AuthMode: "none"
+  CredentialsName: "credentials"
+  IncomingTopic: "incoming/data/#"
+  ResponseTopic: "command/response/#"
+  Writable:
+    ResponseFetchInterval: 500
