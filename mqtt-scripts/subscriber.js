@@ -13,15 +13,12 @@ client.on('connect', () => {
     });
 });
 
-// Processando as mensagens recebidas
 client.on('message', (topic, message) => {
     console.log('Received message on topic:', topic);
     console.log('Message:', message.toString());
 
-    // Lógica para processar os dados recebidos
     try {
         const data = JSON.parse(message.toString());
-        // Você pode fazer mais processamento aqui, como salvar os dados ou acioná-los no EdgeX
         console.log('Parsed data:', data);
     } catch (error) {
         console.log('Error parsing message:', error);

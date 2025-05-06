@@ -5,11 +5,11 @@ client.on('connect', () => {
   console.log('Connected to MQTT broker');
 
   setInterval(() => {
-    const deviceName = 'MQTT-test-device'; // Changed to lowercase 'test'
+    const deviceName = 'MQTT-test-device';
     const resourceName = 'randfloat64';
     const randValue = (Math.random() * 100).toFixed(2);
 
-    const topic = `incoming/data/${deviceName}/${resourceName}`; // Now incoming/data/MQTT-test-device/randfloat64
+    const topic = `incoming/data/${deviceName}/${resourceName}`;
     const payload = randValue;
 
     client.publish(topic, payload);
