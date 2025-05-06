@@ -34,6 +34,7 @@ Este código:
 - Conecta ao broker MQTT em `localhost:1883`.
 - Publica um valor aleatório (como string) a cada 2 segundos no tópico `incoming/data/MQTT-test-device/randfloat64`.
 ## Nota importante:
+
  - O resourceName deve obedecer um dos tipos suportados pelo device-mqtt (randfloat64, script, randfloat32), no nosso caso: randfloat64.
 
 ### 3 Subscriber (`subscriber.js`)
