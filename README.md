@@ -118,7 +118,7 @@ O ficheiro `configuration.yaml` é montado via volume (`./mqtt/configuration.yam
     ```
 - **Erro: Dados MQTT não processados**:
   - **Causa**: Tópico incorreto.
-  - **Solução**: Verifique o `configuration.toml` do `device-mqtt`:
+  - **Solução**: Verifique o `configuration.yaml` do `device-mqtt`:
     ```bash
     docker exec -it edgex-device-mqtt cat /etc/device-mqtt/configuration.toml
     ```
